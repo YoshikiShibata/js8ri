@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Test code for SortFilesInDirectory. This code must run on a Unix such as
+ * Test code for SortFilesInDirectory. This code must be run on a Unix such as
  * Linux or Mac OS X
  */
 public class SortFilesInDirectoryTest {
@@ -26,7 +26,7 @@ public class SortFilesInDirectoryTest {
 
         // Check
         boolean modeChanged = false;
-        
+
         for (int i = 1; i < files.length; i++) {
             File prev = files[i - 1];
             File next = files[i];
