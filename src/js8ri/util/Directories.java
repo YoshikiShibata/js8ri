@@ -38,4 +38,18 @@ public class Directories {
         }
         return dir;
     }
+    
+    /**
+     * List all files under the specified directory.
+     * 
+     * @param directoryPath patht to be directory
+     * @return File[] representing all files in the directory, or <code>null</code>
+     * if the specified path neither exists nor is directory.
+     */
+    public static File[] listFiles(String directoryPath) {
+        File dir = toDirectory(directoryPath);
+        if (dir == null)
+            return null;
+        return dir.listFiles();
+    }
 }

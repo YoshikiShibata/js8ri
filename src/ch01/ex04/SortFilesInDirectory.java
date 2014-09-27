@@ -11,7 +11,7 @@ import java.util.Arrays;
  * the files, and within each group, elements are sorted by path name. Use a
  * lambda expression, not a Comparator.
  *
- * File オブジェクトの配列が与えられたとします。その配列をソートして、ファイルの前
+ * Fileオブジェクトの配列が与えられたとします。その配列をソートして、ファイルの前
  * にディレクトリが来るようにし、ファイルとディレクトリのそれぞれのグループではパス
  * 名でソートされるようにしなさい。Comparatorではなく、ラムダ式を使用しなさい。
  */
