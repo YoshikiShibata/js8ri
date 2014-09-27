@@ -17,26 +17,6 @@ import java.io.File;
  */
 public class ListAllSubdirectories {
 
-    public static void main(String[] args) {
-        if (args.length != 1) {
-            showUsage();
-            return;
-        }
-
-        File dir = js8ri.util.Directories.toDirectory(args[0]);
-        if (dir == null) {
-            return;
-        }
-
-        for (File subDir : listAllSubDirectories(dir)) {
-            System.out.println(subDir);
-        }
-    }
-
-    private static void showUsage() {
-        System.out.println("Usage: ListAllSubdirectories directoryPath");
-    }
-
     public static File[] listAllSubDirectories(File directory) {
         return directory.listFiles(file -> {
             return file.isDirectory();

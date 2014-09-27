@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Test code for ListAllSubdirectoriesTest. This code must be run on a Unix such
+ * Test code for ListAllSubdirectories. This code must be run on a Unix such
  * as Linux or Mac OS X.
  */
 public class ListAllSubdirectoriesTest {
@@ -23,7 +23,7 @@ public class ListAllSubdirectoriesTest {
         // Action
         File[] subdirectories = ListAllSubdirectories.listAllSubDirectories(dir);
 
-        // Prepare
+        // Check
         for (File sub : subdirectories) {
             if (!sub.isDirectory()) {
                 fail(sub.getName() + " is not a directory");
