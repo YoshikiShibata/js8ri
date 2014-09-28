@@ -37,5 +37,5 @@ public class LegacyOwnCollection extends ArrayList {
      * at compile time: the signature and return type of a method determine the
      * selection.
      */
-    public List<Integer> stream() { }
+    // public List<Integer> stream() { }
 }
