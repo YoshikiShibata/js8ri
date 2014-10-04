@@ -22,13 +22,10 @@ public class VerifyFilter {
 
         String contents = new String(Files.readAllBytes(
                 Paths.get("alice.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[¥¥P{L}]+"));
-        
-        long count = words.stream().filter(
-                w -> {
-                    System.out.println("filter: called");
-                    return w.length() > 12; 
-                }).peek(w -> System.out.println("peeked")).limit(5).count();        
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+
+        long count = words.stream().filter(w -> w.length() > 12).
+                peek(w -> System.out.println("peeked")).limit(5).count();
     }
 
 }

@@ -10,16 +10,12 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.RandomAccess;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
- * @author yoshiki
+ * Test code for LegnthyWordCounter.
  */
 public class LengthyWordCounterTest {
 
@@ -33,27 +29,10 @@ public class LengthyWordCounterTest {
         String contents = new String(Files.readAllBytes(
                 Paths.get("alice.txt")), StandardCharsets.UTF_8);
 
-        words = Arrays.asList(contents.split("[¥¥P{L}]+"));
+        words = Arrays.asList(contents.split("[\\P{L}]+"));
         assertTrue(words instanceof RandomAccess);
     }
 
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     @Test
     public void testCount() {
         // Prepare
