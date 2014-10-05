@@ -8,8 +8,22 @@ import java.util.stream.Stream;
 import js8ri.util.FileUtil;
 
 /**
+ * Measure the difference when counting long words with a parallelStream instead
+ * of a stream. Call System.nanoTime before and after the call, and print the
+ * difference. Switch to a larger document (such as War and Peace) if you have a
+ * fast computer.
  *
- * @author yoshiki
+ * stream ではなく、parallelStream で長い単語を数えた場合の速度の違いを計りな さい。呼び出しの前後でSystem.nanoTime
+ * を呼び出して、差を表示しなさい。高速 なコンピュータを持っているのであれば、（『戦争と平和』（War and Peace）などの）もっ
+ * と大きなドキュメントで試しなさい。
+ *
+ * Output on my MacBook Air (1.7GHz Intel Core i7, 8GB memory) with NetBeans
+ * <pre>
+ *   No. of words : 30420
+ *   No. of lengthy words : 33
+ *   9557500 ns (stream)
+ *   2076300 ns (parallelStream)
+ * </pre>
  */
 public class ParallelStreamPerformance {
 
