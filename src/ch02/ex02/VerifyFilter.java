@@ -3,11 +3,8 @@
  */
 package ch02.ex02;
 
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
+import js8ri.util.FileUtil;
 
 /**
  * Verify that asking for the first five long words does not call the filter
@@ -19,10 +16,7 @@ import java.util.List;
 public class VerifyFilter {
 
     public static void main(String[] args) throws Exception {
-
-        String contents = new String(Files.readAllBytes(
-                Paths.get("alice.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        List<String> words = FileUtil.readAsWords("alice.txt");
 
         long count = words.stream().filter(w -> w.length() > 12).
                 peek(w -> System.out.println("peeked")).limit(5).count();

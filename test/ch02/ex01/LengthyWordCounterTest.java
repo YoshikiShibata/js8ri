@@ -4,12 +4,9 @@
 package ch02.ex01;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.RandomAccess;
+import js8ri.util.FileUtil;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,10 +23,7 @@ public class LengthyWordCounterTest {
 
     @BeforeClass
     public static void setUpClass() throws IOException {
-        String contents = new String(Files.readAllBytes(
-                Paths.get("alice.txt")), StandardCharsets.UTF_8);
-
-        words = Arrays.asList(contents.split("[\\P{L}]+"));
+        words = FileUtil.readAsWords("alice.txt");
         assertTrue(words instanceof RandomAccess);
     }
 
