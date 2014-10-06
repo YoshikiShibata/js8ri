@@ -34,7 +34,7 @@ public class InfiniteStreamOfRandomNumbersTest {
         
         Set<Long> randomSet = new HashSet<>();
         
-        randomStream.filter(randomSet::add).limit(NO_OF_RANDOMS).count();
+        randomStream.limit(NO_OF_RANDOMS).forEach(randomSet::add);
         assertTrue(randomSet.size() == NO_OF_RANDOMS);
     }
     
@@ -43,7 +43,7 @@ public class InfiniteStreamOfRandomNumbersTest {
         final int NO_OF_RANDOMS = 100;
         Set<Long> randomSet = new HashSet<>();
         
-        randomStream.filter(randomSet::add).limit(NO_OF_RANDOMS).count();
+        randomStream.limit(NO_OF_RANDOMS).forEach(randomSet::add);
         
         for (Long value: randomSet) {
             if (value < 0)
@@ -60,8 +60,7 @@ public class InfiniteStreamOfRandomNumbersTest {
                 25214903917L, 11L, 1L << 63, 0L);
         
         long[] range = new long[20];
-        rs.filter(value -> { countUp(range, value); return true; }).
-                limit(NO_OF_RANDOMS).count();
+        rs.limit(NO_OF_RANDOMS).forEach(value -> countUp(range, value));
         
         for (long occurrence: range) {
             System.out.println(occurrence);
