@@ -22,29 +22,6 @@ import java.util.stream.Stream;
  */
 public class InfiniteStreamOfRandomNumbers {
     public static Stream<Long> random(long a, long c, long m, long seed) {
-        LinearCongruntialGenerator lcg = new LinearCongruntialGenerator(a, c, m, seed);
-        
-        Stream<Long> randomStream = Stream.generate(() -> lcg.next());
-        return randomStream;
-    }
-    
-    private static class LinearCongruntialGenerator {
-        final private long a;
-        final private long c;
-        final private long m;
-        
-        private long x;
-        
-        LinearCongruntialGenerator(long a, long c, long m, long seed) {
-            this.a = a;
-            this.c = c;
-            this.m = m;
-            x = seed;
-        }
-        
-        long next() {
-            x = (a * x + c ) % m;
-            return x;
-        }
+        return Stream.iterate(seed, x -> (a * x + c) % m);
     }
 }
