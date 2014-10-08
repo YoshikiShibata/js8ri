@@ -46,10 +46,32 @@ public class CombineArrayLists {
     }
 
     public static <T> ArrayOfStreamFlatter<T> create2() {
-        throw new AssertionError("Not Implmeneted Yet");
+        return stream -> {
+            return stream.reduce(new ArrayList<>(), 
+                (x, y) -> {
+                    ArrayList<T> intermediate = new ArrayList<>();
+                    intermediate.addAll(x);
+                    intermediate.addAll(y);
+                    return intermediate;  
+                }
+            );
+        };
     }
 
     public static <T> ArrayOfStreamFlatter<T> create3() {
-        throw new AssertionError("Not Implmeneted Yet");
+        return stream -> {
+            return stream.reduce(new ArrayList<>(),
+                (resultList, elementList) ->  { 
+                    resultList.addAll(elementList);
+                    return resultList;
+                },
+                (x, y) -> {
+                    ArrayList<T> intermediate = new ArrayList<>();
+                    intermediate.addAll(x);
+                    intermediate.addAll(y);
+                    return intermediate;  
+                }
+            );
+        };
     }
 }
