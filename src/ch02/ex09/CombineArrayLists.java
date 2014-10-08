@@ -20,10 +20,12 @@ public class CombineArrayLists {
         // non-instantiable
     }
 
+    @FunctionalInterface
     public interface ArrayOfStreamFlatter<T> {
+
         /**
          * Flat Stream<ArrayList<T>> into ArrayList<T>
-         * 
+         *
          * @param stream stream to be flatted.
          * @return flatted list
          */
@@ -31,24 +33,16 @@ public class CombineArrayLists {
     }
 
     public static <T> ArrayOfStreamFlatter<T> create1() {
-        return new Flatter1<>();
-    }
-    
-    private static class Flatter1<T> implements ArrayOfStreamFlatter<T> {
-
-        @Override
-        public ArrayList<T> flat(Stream<ArrayList<T>> stream) {
-            
+        return stream -> {
             Optional<ArrayList<T>> result = stream.reduce((x, y) -> {
                 ArrayList<T> intermediate = new ArrayList<>();
                 intermediate.addAll(x);
                 intermediate.addAll(y);
                 return intermediate;
             });
-            
+
             return result.orElse(new ArrayList<>());
-        }
-        
+        };
     }
 
     public static <T> ArrayOfStreamFlatter<T> create2() {
