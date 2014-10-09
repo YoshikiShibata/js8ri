@@ -3,6 +3,7 @@
  */
 package ch02.ex10;
 
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
 /**
@@ -26,18 +27,18 @@ public class DoubleStreamUtil {
      * @return average value
      */
     public static double average(Stream<Double> stream) {
-        long[] count = new long[1];
+        AtomicLong al = new AtomicLong();
         
         double sum = stream.reduce(0.0, (x, y) -> {
-            count[0]++;
+            al.incrementAndGet();
             return x + y;
             }
         );
         
-        if (count[0] == 0) // empty stream
+        long count = al.get();
+        if (count == 0) // empty stream
             return 0.0;
         
-        System.out.println(count[0]);
-        return sum / count[0];
+        return sum / count;
     }
 }
