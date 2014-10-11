@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
  */
-package ch02.ex12;
+package ch02.ex13;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -10,19 +10,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Test code for ParallelCount
+ * Test code for ShortWordCounter
  */
-public class ParallelCountTest {
+public class ShortWordCounterTest {
     
     @Test(expected=NullPointerException.class)
     public void testNullPointerException() {
-        ParallelCount.countShortWords(null, 12);
+        ShortWordCounter.countShortWords(null, 12);
     }
     
     
     @Test(expected=IllegalArgumentException.class)
     public void testIllegalArgumentException() {
-        ParallelCount.countShortWords(Stream.empty(), 0);
+        ShortWordCounter.countShortWords(Stream.empty(), 0);
     }
     
     @Test
@@ -31,7 +31,7 @@ public class ParallelCountTest {
         List<String> words = FileUtil.readAsWords("WarAndPeace.txt");
         
         // Action
-        int[] occurences = ParallelCount.countShortWords(words.stream(), 12);
+        int[] occurences = ShortWordCounter.countShortWords(words.stream(), 12);
         
         // Check
         assertTrue(occurences != null);
