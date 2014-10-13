@@ -3,6 +3,7 @@
  */
 package ch03.ex01;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,8 +69,9 @@ public final class LoggerUtil {
     void logIf(Level level,
             VoidPredicate predicate,
             Supplier<String> msgSupplier) {
-
-        requireNonNull(level, predicate, msgSupplier);
+        Objects.requireNonNull(level, "level is null");
+        Objects.requireNonNull(predicate, "predicate is null");
+        Objects.requireNonNull(msgSupplier, "predicate is null");
 
         if (!logger.isLoggable(level)) {
             return;
@@ -80,22 +82,5 @@ public final class LoggerUtil {
         }
 
         logger.log(level, msgSupplier.get());
-    }
-
-    private void requireNonNull(Level level,
-            VoidPredicate predicate,
-            Supplier<String> msgSupplier) {
-
-        if (level == null) {
-            throw new NullPointerException("level is null");
-        }
-
-        if (predicate == null) {
-            throw new NullPointerException("predicate is null");
-        }
-
-        if (msgSupplier == null) {
-            throw new NullPointerException("msgSupplier is null");
-        }
     }
 }
