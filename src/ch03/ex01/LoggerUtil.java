@@ -68,6 +68,24 @@ public final class LoggerUtil {
     void logIf(Level level,
             VoidPredicate predicate,
             Supplier<String> msgSupplier) {
+
+        requireNonNull(level, predicate, msgSupplier);
+
+        if (!logger.isLoggable(level)) {
+            return;
+        }
+
+        if (!predicate.test()) {
+            return;
+        }
+
+        logger.log(level, msgSupplier.get());
+    }
+
+    private void requireNonNull(Level level,
+            VoidPredicate predicate,
+            Supplier<String> msgSupplier) {
+
         if (level == null) {
             throw new NullPointerException("level is null");
         }
@@ -79,15 +97,5 @@ public final class LoggerUtil {
         if (msgSupplier == null) {
             throw new NullPointerException("msgSupplier is null");
         }
-
-        if (!logger.isLoggable(level)) {
-            return;
-        }
-
-        if (!predicate.test()) {
-            return;
-        }
-
-        logger.log(level, msgSupplier.get());
     }
 }
