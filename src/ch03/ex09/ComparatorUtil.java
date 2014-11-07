@@ -6,8 +6,6 @@ package ch03.ex09;
 import java.lang.reflect.Field;
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Write a method lexicographicComparator(String... fieldNames) that yields a
