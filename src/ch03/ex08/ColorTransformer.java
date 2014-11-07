@@ -4,7 +4,6 @@
 package ch03.ex08;
 
 import java.util.Objects;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
