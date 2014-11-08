@@ -8,12 +8,12 @@ import javafx.scene.paint.Color;
 /**
  *
  */
-class IntermediateLatenImage extends LatentImage {
+class IntermediateLatentImage extends LatentImage {
 
     final LatentImage image;
     final ColorTransformer transformer;
 
-    IntermediateLatenImage(LatentImage image, ColorTransformer transformer) {
+    IntermediateLatentImage(LatentImage image, ColorTransformer transformer) {
         super(image.getWidth(), image.getHeight());
         this.image = image;
         this.transformer = transformer;

@@ -57,7 +57,7 @@ public class LatentImage {
     }
     
     public final LatentImage transform(ColorTransformer transformer) {
-        return new IntermediateLatenImage(this, transformer);
+        return new IntermediateLatentImage(this, transformer);
     }
 
 
