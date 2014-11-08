@@ -60,7 +60,7 @@ public class ImageDemo extends Application {
         UnaryOperator<Color> op = Color::brighter;
         // Image finalImage = transform(image, op.compose(Color::grayscale));
         Function<Color, Color> op2 = op.compose(Color::grayscale);
-        UnaryOperator<Color> op3 = (UnaryOperator<Color>) op2;
+        UnaryOperator<Color> op3 = (UnaryOperator<Color>) op2; // ClassCastException
 
         Image image2 = transform(image, Color::brighter);
         Image finalImage = transform(image, op3);
