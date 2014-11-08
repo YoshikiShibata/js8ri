@@ -13,8 +13,8 @@ import javafx.scene.paint.Color;
  * to a brightened image. (See Exercise 5 for the gray frame.)
  *
  * 2 つのColorTransformer オブジェクトを合成できるstatic メソッドを実装しなさい。そして、x 座標とy
- * 座標を無視するColorTransformer へ UnaryOperator<Color>を変えるstatic メソッドを実装しなさい。それから、
- * 変換によって明るくなった画像に灰色の枠を追加するために、実装したメソッドを使用し なさい（灰色の枠に関しては練習問題5 を参照しなさい）。
+ * 座標を無視するColorTransformerへUnaryOperator<Color>を変えるstaticメソッドを実装しなさい。それから、
+ * 変換によって明るくなった画像に灰色の枠を追加するために、実装したメソッドを使用しなさい（灰色の枠に関しては練習問題5 を参照しなさい）。
  */
 @FunctionalInterface
 public interface ColorTransformer {
@@ -40,13 +40,15 @@ public interface ColorTransformer {
     static ColorTransformer compose(ColorTransformer first, ColorTransformer second) {
         return (x, y, color) -> second.apply(x, y, first.apply(x, y, color));
     }
-    
+
     /**
-     * Convert an ColorTransformer into an UnaryOperator, ignoring x and y coordinates.
-     * @param ct an ColorTransformer to be converted.
-     * @return UnaryOperator
+     * Convert an UnaryOperator into a ColorTransformer, ignoring x and y
+     * coordinates.
+     *
+     * @param uop an UnaryOperator
+     * @return a ColorTransformer
      */
-    static UnaryOperator<Color> toUnary(ColorTransformer ct) {
-        return c -> ct.apply(0, 0, c);
+    static ColorTransformer toColorTransformer(UnaryOperator<Color> uop) {
+        return (x, y, c) -> uop.apply(c);
     }
 }

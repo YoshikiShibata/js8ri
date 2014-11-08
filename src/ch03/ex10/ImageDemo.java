@@ -54,6 +54,7 @@ public class ImageDemo extends Application {
         return t -> op2.apply(op1.apply(t));
     }
 
+    @Override
     public void start(Stage stage) {
         Image image = new Image("eiffel-tower.jpg");
 
