@@ -18,11 +18,14 @@ public class ImageDemo extends Application {
     public void start(Stage stage) {
         Image image = new Image("eiffel-tower.jpg");
 
-        Image finalImage = LatentImage.from(image).transform(blur())
+        Image blurredImage = LatentImage.from(image).transform(blur())
+                .toImage();
+        Image edgeDetectedImage = LatentImage.from(image).transform(edgeDetect())
                 .toImage();
         stage.setScene(new Scene(new HBox(
                 new ImageView(image),
-                new ImageView(finalImage))));
+                new ImageView(blurredImage),
+                new ImageView(edgeDetectedImage))));
         stage.show();
     }
 
@@ -51,9 +54,10 @@ public class ImageDemo extends Application {
             int pixels = 0;
 
             for (Color c : colors) {
-                if (c == null)
+                if (c == null) {
                     continue;
-                pixels ++;
+                }
+                pixels++;
                 red += c.getRed();
                 green += c.getGreen();
                 blue += c.getBlue();
@@ -61,6 +65,52 @@ public class ImageDemo extends Application {
 
             return Color.color(red / pixels, green / pixels, blue / pixels);
         };
+    }
+
+    private static ColorTransformer edgeDetect() {
+        return (x, y, image) -> {
+            int width = image.getWidth();
+            int height = image.getHeight();
+            Color[] colors = new Color[4];
+
+            colors[0] = getColor(image, x, y + 1, width, height); // north
+            colors[1] = getColor(image, x + 1, y, width, height); // east
+            colors[2] = getColor(image, x, y - 1, width, height); // south
+            colors[3] = getColor(image, x - 1, y, width, height); // west
+
+            Color myColor = image.getColor(x, y);
+
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
+            int count = 0;
+            for (Color c : colors) {
+                if (c == null) {
+                    continue;
+                }
+                red += c.getRed();
+                green += c.getGreen();
+                blue += c.getBlue();
+                count++;
+            }
+            
+            if (count == 0) {
+                throw new AssertionError("count == 0");
+            }
+
+            return Color.color(
+                    fixColorValue(myColor.getRed() * count - red),
+                    fixColorValue(myColor.getGreen() * count - green),
+                    fixColorValue(myColor.getBlue() * count - blue));
+        };
+    }
+    
+    private static double fixColorValue(double value) {
+        if (value < 0.0)
+            return 0.0;
+        if (value > 1.0)
+            return 1.0;
+        return value;
     }
 
     private static Color getColor(LatentImage image,
