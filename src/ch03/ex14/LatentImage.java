@@ -15,8 +15,27 @@ import javafx.scene.image.WritablePixelFormat;
 import javafx.scene.paint.Color;
 
 /**
+ * To deal with lazy evaluation on a per-pixel basis, change the transformers so
+ * that they are passed a PixelReader object from which they can read other
+ * pixels in the image. For example, (x, y, reader) -> reader.get(width - x, y)
+ * is a mirroring operation. The convolution filters from the preceding
+ * exercises can be easily implemented in terms of such a reader. The
+ * straightforward operations would simply have the form (x, y, reader) ->
+ * reader.get(x, y).grayscale(), and you can provide an adapter from
+ * UnaryOperation<Color>. A PixelReader is at a particular level in the pipeline
+ * of operations. Keep a cache of recently read pixels at each level in the
+ * pipeline. If a reader is asked for a pixel, it looks in the cache (or in the
+ * original image at level 0); if that fails, it constructs a reader that asks
+ * the previous transform.
  *
- * @author yoshiki
+ * ピクセル単位の遅延評価を扱うために、今までのtransformer を変更して、画像内の 他のピクセルを読み込むことができるPixelReader
+ * を渡すようにしなさい。たとえば、 (x, y, reader) -> reader.get(width - x, y) は、鏡像操作です。前の練
+ * 習問題からの畳み込みフィルターであれば、リーダーの観点からは容易に実装できます。 素直な操作は、単に(x, y, reader) ->
+ * reader.get(x, y).grayscale() の
+ * 形式であり、UnaryOperation<Color>からのアダプターを提供することができます。 PixelReader
+ * は、操作のパイプライン中の特定のレベルにあります。パイプライン中 の個々のレベルで最近読み込まれたピクセルのキャッシュを保持するようにしてくださ
+ * い。ピクセルを求められたら、リーダーはキャッシュ（あるいは、レベル0 なら元画像）
+ * を調べます。ピクセルがなければリーダーを構築し、そのリーダーはピクセルを前段階で 求めます。
  */
 public class LatentImage implements PixelReader {
 

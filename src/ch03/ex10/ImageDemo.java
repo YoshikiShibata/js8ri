@@ -32,6 +32,22 @@ import javafx.stage.*;
  * which cannot be assigned to UnaryOperator<Color>.
  *
  * If structural type was accepted, then the compose would be fine.
+ *
+ * ---------------
+ * Reply from Cay:
+ * ---------------
+ * As I am sure you have realized, the problem with UnaryOperator.compose is
+ * that it inherits from Function.compose without refining the return type.
+ *
+ * With this exercise, I wanted readers to reflect on the fact that with
+ * strucural typing, you wouldn't have to worry about the name of the interface,
+ * but just what it does (e.g. Color -> Color) instead of Function<Color, Color>
+ * or UnaryOperator<Color>). And there would be no problem with writing a
+ * compose method that works with any kind of functions.
+ *
+ * Then again, one loses something, namely the nice names. When you look at
+ * UnaryOperator<Color>, it's maybe clearer than Color -> Color. Certainly,
+ * BinaryOperator<Color> wins over Color x Color -> Color.
  */
 public class ImageDemo extends Application {
 
