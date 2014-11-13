@@ -62,7 +62,7 @@ public class ExceptionUtilTest {
     public void bothOks() {
         AsyncResult as = new AsyncResult();
 
-        ExceptionUtil.doInOrderAsync(
+        AsyncUtil.doInOrderAsync(
                 () -> "Hello", (t, e) -> {
                     if (e != null) {
                         as.setResult(false);
@@ -79,7 +79,7 @@ public class ExceptionUtilTest {
     public void firstException() {
         AsyncResult as = new AsyncResult();
 
-        ExceptionUtil.doInOrderAsync(
+        AsyncUtil.doInOrderAsync(
                 () -> {
                     throw new RuntimeException("ha ha");
                 },
@@ -99,7 +99,7 @@ public class ExceptionUtilTest {
     public void secondException() {
         AsyncResult as = new AsyncResult();
 
-        ExceptionUtil.doInOrderAsync(
+        AsyncUtil.doInOrderAsync(
                 () -> "hello",
                 (t, e) -> {
                     throw new RuntimeException("ha ha");
@@ -115,7 +115,7 @@ public class ExceptionUtilTest {
     public void firstExceptionThenSecondException() {
         AsyncResult as = new AsyncResult();
         
-        ExceptionUtil.doInOrderAsync(
+        AsyncUtil.doInOrderAsync(
                 () -> { throw new RuntimeException("ha ha"); }, 
                 (t, e) -> {
                     if (e == null) {

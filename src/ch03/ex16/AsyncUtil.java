@@ -15,9 +15,9 @@ import java.util.function.Supplier;
  * 71 ページの3.8 節「例外の取り扱い」のdoInOrderAsync を実装し、2 つ目のパラメー
  * タはBiConsumer<T, Throwable>としなさい。うまいユースケースを示しなさい。 3 つ目のパラメータは必要ですか。
  */
-public class ExceptionUtil {
+public class AsyncUtil {
 
-    private ExceptionUtil() {
+    private AsyncUtil() {
         // Non-instantiable
     }
     
