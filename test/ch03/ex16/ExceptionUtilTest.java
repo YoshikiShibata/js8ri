@@ -19,18 +19,20 @@ import static org.junit.Assert.*;
 public class ExceptionUtilTest {
 
     private static class AsyncResult {
+
         private Boolean result = null;
-        
+
         synchronized boolean waitForResult() {
-            while (result == null)
+            while (result == null) {
                 try {
                     wait();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(ExceptionUtilTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
             return result;
         }
-        
+
         synchronized void setResult(boolean result) {
             this.result = result;
             notifyAll();
@@ -59,43 +61,73 @@ public class ExceptionUtilTest {
     @Test
     public void bothOks() {
         AsyncResult as = new AsyncResult();
-        
+
         ExceptionUtil.doInOrderAsync(
-                () -> "Hello",  (t, e) -> {
+                () -> "Hello", (t, e) -> {
                     if (e != null) {
                         as.setResult(false);
                         return;
                     }
-                    
+
                     as.setResult(t.equals("Hello"));
                 }, null);
-        
+
         assertTrue(as.waitForResult());
     }
-    
+
     @Test
     public void firstException() {
         AsyncResult as = new AsyncResult();
-        
+
         ExceptionUtil.doInOrderAsync(
-            () -> {throw new RuntimeException("ha ha");},
-            (t, e) -> {
-                if (t != null) {
-                    as.setResult(false);
-                    return;
-                }
-                as.setResult(e != null);
-            }, null
-            );
+                () -> {
+                    throw new RuntimeException("ha ha");
+                },
+                (t, e) -> {
+                    if (t != null) {
+                        as.setResult(false);
+                        return;
+                    }
+                    as.setResult(e != null);
+                }, null
+        );
+
+        assertTrue(as.waitForResult());
     }
-    
+
     @Test
     public void secondException() {
-        fail("Not Implemented Yet");
+        AsyncResult as = new AsyncResult();
+
+        ExceptionUtil.doInOrderAsync(
+                () -> "hello",
+                (t, e) -> {
+                    throw new RuntimeException("ha ha");
+                },
+                (e) -> {
+                    as.setResult(e != null);
+                });
+        
+        assertTrue(as.waitForResult());
     }
-    
+
     @Test
     public void firstExceptionThenSecondException() {
-        fail("Not Implemented Yet");
+        AsyncResult as = new AsyncResult();
+        
+        ExceptionUtil.doInOrderAsync(
+                () -> { throw new RuntimeException("ha ha"); }, 
+                (t, e) -> {
+                    if (e == null) {
+                        as.setResult(false);
+                        return;
+                    }
+                    throw new RuntimeException("ha ha");
+                }, 
+                (e) -> {
+                    as.setResult(e != null);
+                });
+        
+        assertTrue(as.waitForResult());
     }
 }
