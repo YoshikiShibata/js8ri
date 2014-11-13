@@ -3,8 +3,7 @@
  */
 package ch03.ex16;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import js8ri.util.AsyncResult;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,30 +15,9 @@ import static org.junit.Assert.*;
  *
  * @author yoshiki
  */
-public class ExceptionUtilTest {
+public class AsyncUtilTest {
 
-    private static class AsyncResult {
-
-        private Boolean result = null;
-
-        synchronized boolean waitForResult() {
-            while (result == null) {
-                try {
-                    wait();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ExceptionUtilTest.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            return result;
-        }
-
-        synchronized void setResult(boolean result) {
-            this.result = result;
-            notifyAll();
-        }
-    }
-
-    public ExceptionUtilTest() {
+    public AsyncUtilTest() {
     }
 
     @BeforeClass
