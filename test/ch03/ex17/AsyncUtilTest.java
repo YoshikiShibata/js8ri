@@ -79,16 +79,25 @@ public class AsyncUtilTest {
                     throw new RuntimeException("ha ha");
                 },
                 () -> asSecond.setResult(true),
-                (e) -> {
-                    asFirst.setResult(true);
-                });
+                (e) -> asFirst.setResult(true));
 
         assertTrue(asFirst.waitForResult());
         assertTrue(asSecond.waitForResult());
     }
-    
+
     @Test
     public void testSecondThrowException() {
-        throw new AssertionError("Not Implemented Yet");
+        AsyncResult asFirst = new AsyncResult();
+        AsyncResult asSecond = new AsyncResult();
+
+        AsyncUtil.doInParallelAsync(
+                () -> asFirst.setResult(true),
+                () -> {
+                    throw new RuntimeException("ha ha");
+                },
+                (e) -> asSecond.setResult(true));
+
+        assertTrue(asFirst.waitForResult());
+        assertTrue(asSecond.waitForResult());
     }
 }
