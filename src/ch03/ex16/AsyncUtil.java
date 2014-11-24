@@ -36,33 +36,32 @@ public class AsyncUtil {
     public static <T> void doInOrderAsync(
             Supplier<T> supplier, BiConsumer<T, Throwable> consumer,
             Consumer<Throwable> handler) {
-        Thread t = new Thread() {
-            
-            @Override
-            public void run() {
+        Thread t = new Thread(
+            () -> {
+
                 T result = null;
                 Throwable firstFailure = null;
 
                 try {
                     result = supplier.get();
-                } catch (Throwable t) {
-                    firstFailure = t;
+                } catch (Throwable e) {
+                    firstFailure = e;
                     try {
-                        consumer.accept(null, t);
-                    } catch (Throwable e) {
-                        handler.accept(e);
+                        consumer.accept(null, e);
+                    } catch (Throwable e2) {
+                        handler.accept(e2);
                     }
                 }
 
                 if (firstFailure == null) {
                     try {
                         consumer.accept(result, null);
-                    } catch (Throwable t) {
-                        handler.accept(t);
+                    } catch (Throwable e) {
+                        handler.accept(e);
                     }
                 }
             }
-        };
+        );
         t.start();
     }
 

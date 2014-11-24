@@ -17,16 +17,16 @@ import java.util.function.Consumer;
  * handler) を実装しなさい。
  */
 public class AsyncUtil {
-    
+
     private AsyncUtil() {
         // Non-instantiable
     }
 
     /**
-     * Executes two Runnables in parallel. When either of Runnables throws an 
+     * Executes two Runnables in parallel. When either of Runnables throws an
      * exception, handler will be invoked from a thread where the handler is
      * being executed.
-     * 
+     *
      * @param first a Runnable
      * @param second a Runnable
      * @param handler a handler to handle an exception
@@ -37,32 +37,30 @@ public class AsyncUtil {
         Objects.requireNonNull(first, "first is null");
         Objects.requireNonNull(second, "second is null");
         Objects.requireNonNull(handler, "handler is null");
-        
-        Thread t1 = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    first.run();
-                } catch (Throwable e) {
-                    handler.accept(e);
+
+        Thread t1 = new Thread(
+                () -> {
+                    try {
+                        first.run();
+                    } catch (Throwable e) {
+                        handler.accept(e);
+                    }
                 }
-            }
-        };
-        
-        Thread t2 = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    second.run();
-                } catch (Throwable e) {
-                    handler.accept(e);
+        );
+
+        Thread t2 = new Thread(
+                () -> {
+                    try {
+                        second.run();
+                    } catch (Throwable e) {
+                        handler.accept(e);
+                    }
                 }
-            }
-        };
-        
+        );
+
         t1.start();
         t2.start();
 
     }
-    
+
 }
