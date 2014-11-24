@@ -3,6 +3,7 @@
  */
 package ch03.ex17;
 
+import js8ri.util.AsyncResult;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,5 +39,28 @@ public class AsyncUtilTest {
     @Test(expected=NullPointerException.class)
     public void testFirstNull() {
         AsyncUtil.doInParallelAsync(null, null, null);
+    }
+    
+    @Test(expected=NullPointerException.class)
+    public void testSecondNull() {
+        AsyncUtil.doInParallelAsync(() -> {}, null, null);
+    }
+    
+    @Test(expected=NullPointerException.class)
+    public void testHandlerNull() {
+        AsyncUtil.doInParallelAsync(() -> {}, () -> {}, null);
+    }
+    
+    public void testBothRunnableNormal() {
+        AsyncResult asFirst = new AsyncResult();
+        AsyncResult asSecond = new AsyncResult();
+        
+        AsyncUtil.doInParallelAsync(
+                () -> asFirst.setResult(true), 
+                () -> asSecond.setResult(true), 
+                (e) -> { throw new AssertionError("Not Possible"); });
+        
+        assertTrue(asFirst.waitForResult());
+        assertTrue(asSecond.waitForResult());
     }
 }
