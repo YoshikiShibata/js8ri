@@ -3,9 +3,8 @@
  */
 package ch03.ex18;
 
-import java.util.concurrent.Callable;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * Implement a version of the unchecked method in Section 3.8, “Dealing with
@@ -20,7 +19,18 @@ import java.util.function.Supplier;
  */
 public class ExceptionUtil {
 
+    /**
+     * Converts FunctionWithException into Function.
+     * 
+     * @param <T> the ype of the input of the function
+     * @param <U> the type of the result of the function
+     * @param f function which throws a checked exception
+     * @return function which throws a unchecked exception
+     * @throws NullPointerException if f is null
+     */
     public static <T, U> Function<T, U> unchecked(FunctionWithException<T, U> f) {
+        Objects.requireNonNull(f, "f is null");
+        
         return (u) -> {
             try {
                 return f.apply(u);
