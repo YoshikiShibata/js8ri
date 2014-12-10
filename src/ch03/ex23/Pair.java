@@ -31,5 +31,4 @@ public class Pair<T> {
     public <U> Pair<U> map(Function<T, ? super U> f) {
         return new Pair(f.apply(first), f.apply(second));
     }
-
 }
