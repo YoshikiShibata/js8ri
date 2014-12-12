@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
  */
-package ch03.ex23;
+package ch03.ex24;
 
 /**
  * Can you define a flatMap method for Pair<T>? If so, what is it? If not, why
