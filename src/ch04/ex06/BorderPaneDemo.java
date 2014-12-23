@@ -12,23 +12,24 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
+ * Center the top and bottom buttons in Figure 4–7.
  *
- * @author yoshiki
+ * 図4-7 のTop とBottom のボタンを真ん中にそろえなさい。
  */
 public class BorderPaneDemo extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
-      BorderPane pane = new BorderPane();
-      
-      pane.setTop(createCenteredButtonBox("Top"));
-      pane.setLeft(new Button("Left"));
-      pane.setCenter(new Button("Center"));
-      pane.setRight(new Button("Right"));
-      pane.setBottom(createCenteredButtonBox("Bottom"));
-      
-      primaryStage.setScene(new Scene(pane));
-      primaryStage.show();
+        BorderPane pane = new BorderPane();
+
+        pane.setTop(createCenteredButtonBox("Top"));
+        pane.setLeft(new Button("Left"));
+        pane.setCenter(new Button("Center"));
+        pane.setRight(new Button("Right"));
+        pane.setBottom(createCenteredButtonBox("Bottom"));
+
+        primaryStage.setScene(new Scene(pane));
+        primaryStage.show();
     }
 
     private HBox createCenteredButtonBox(String label) {
@@ -44,5 +45,5 @@ public class BorderPaneDemo extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
