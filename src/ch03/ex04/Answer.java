@@ -17,7 +17,7 @@ public class Answer {
      * java.io.FileFilter
      * java.io.FilenameFilter
      * java.util.logging.Filter
-     * avax.imageio.spi.ServiceRegistry
+     * javax.imageio.spi.ServiceRegistry
      * javax.management.NotificationFilter
      * javax.xml.stream.EventFilter
      * javax.xml.stream.StreamFilter
