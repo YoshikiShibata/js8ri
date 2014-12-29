@@ -6,7 +6,6 @@ package ch05.ex08;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 
 /**
  * Obtain the offsets of today’s date in all supported time zones for the
