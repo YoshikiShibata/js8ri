@@ -4,7 +4,6 @@
 package ch05.ex01;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Period;
 
 /**
