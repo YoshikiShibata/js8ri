@@ -3,7 +3,6 @@
  */
 package ch05.ex05;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
