@@ -4,7 +4,6 @@
 package ch05.ex04;
 
 import java.time.LocalDate;
-import java.time.Month;
 
 /**
  * Write an equivalent of the Unix cal program that displays a calendar for a
