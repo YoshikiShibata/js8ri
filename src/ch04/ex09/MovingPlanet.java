@@ -16,8 +16,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
+ * Animate a circle, representing a planet, so it travels along an elliptical
+ * orbit. Use a PathTransition.
  *
- * @author yoshiki
+ * 惑星を表す円をアニメーション化して、楕円軌道を回るようにしなさい。 PathTransition を使用します。
  */
 public class MovingPlanet extends Application {
 
