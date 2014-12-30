@@ -72,6 +72,7 @@ private final static String ALICE = "alice.txt";
 
         @Override
         public void run() {
+            // This implementation saves a lot of garbages(Set instances)
             for (String word : words) {
                 Set<File> set = map.get(word);
                 if (set != null) {
