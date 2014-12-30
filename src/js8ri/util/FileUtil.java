@@ -34,7 +34,7 @@ public class FileUtil {
         String contents = null;
         try {
             contents = new String(java.nio.file.Files.readAllBytes(
-                    Paths.get("alice.txt")), StandardCharsets.UTF_8);
+                    Paths.get(filepath)), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new IllegalArgumentException("Cannot Open " + filepath);
         }
