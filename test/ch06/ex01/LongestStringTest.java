@@ -21,7 +21,6 @@ public class LongestStringTest {
         wap.parallelStream().forEach(ls::setIfLongest);
         System.out.println(ls.getLongest());
         assertEquals(longestString(wap), ls.getLongest());
-        
     }
     
     private String longestString(List<String> strings) {
