@@ -39,6 +39,11 @@ public final class Matrix {
     }
 
     public static Matrix of(int[][] value) {
+        validateMatrix(value);
+        return new Matrix(value);
+    }
+
+    private static void validateMatrix(int[][] value) throws IllegalArgumentException {
         Objects.requireNonNull(value, "value is null");
         if (value.length != SIZE) {
             throw new IllegalArgumentException(
@@ -50,7 +55,6 @@ public final class Matrix {
                         String.format("Illeagl size(2,%d) of value", y.length));
             }
         }
-        return new Matrix(value);
     }
 
     public final Matrix multiply(Matrix other) {
