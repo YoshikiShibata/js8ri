@@ -73,18 +73,9 @@ private final static String ALICE = "alice.txt";
         @Override
         public void run() {
             // This implementation saves a lot of garbages(Set instances)
-            for (String word : words) {
-                Set<File> set = map.get(word);
-                if (set != null) {
-                    set.add(file);
-                    continue;
-                }
-                    
-                set = ConcurrentHashMap.newKeySet();
-                set.add(file);
-                set = map.putIfAbsent(word, set);
-                if (set != null)
-                    set.add(file);
+            for (String word: words) {
+                map.computeIfAbsent(word, key -> ConcurrentHashMap.newKeySet());
+                map.get(word).add(file);
             }
         }
     }
