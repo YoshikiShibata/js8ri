@@ -72,7 +72,7 @@ private final static String ALICE = "alice.txt";
 
         @Override
         public void run() {
-            // This implementation saves a lot of garbages(Set instances)
+            // This implementation assures that only one Set is created per key.
             for (String word: words) {
                 map.computeIfAbsent(word, key -> ConcurrentHashMap.newKeySet());
                 map.get(word).add(file);
