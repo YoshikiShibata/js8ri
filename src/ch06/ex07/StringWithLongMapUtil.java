@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2015 Yoshiki Shibata. All rights reserved.
  */
 package ch06.ex07;
 

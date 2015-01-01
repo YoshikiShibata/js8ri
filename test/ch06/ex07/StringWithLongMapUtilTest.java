@@ -1,44 +1,20 @@
-package ch06.ex07;
-
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2015 Yoshiki Shibata. All rights reserved.
  */
+
+package ch06.ex07;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author yoshiki
+ * Test code for StringWithLongMapUtil
  */
 public class StringWithLongMapUtilTest {
-    
-    public StringWithLongMapUtilTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void testMax() {
