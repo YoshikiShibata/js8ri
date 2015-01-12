@@ -57,9 +57,9 @@ public class FindMinimumSeed {
     public static void main(String[] args) {
         long minimumSeed = LongStream.
                 iterate(prev(0), p -> prev(prev(p))).
-                map(n -> n ^ M).  // produces seeds
-                limit(1000_1000). // limits to one million
-                reduce((x, y) -> Math.abs(x) < Math.abs(y) ? x : y). // find minimum seed
+                map(n -> n ^ M).  // produce seeds
+                limit(1000_1000). // limit to one million
+                reduce((x, y) -> Math.abs(x) < Math.abs(y) ? x : y). // find the minimum seed
                 getAsLong();
         
         System.out.println("Minimum Seed:" + minimumSeed);
