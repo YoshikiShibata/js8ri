@@ -4,6 +4,7 @@
 package ch08.ex09;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Spliterator;
 import java.util.Spliterators;
@@ -24,33 +25,87 @@ public class ScannerUtil {
     }
 
     public static Stream<String> words(Scanner scanner) {
-        throw new AssertionError("Not Implemented Yet");
+        Iterator<String> iter = new ScannerIterator<>(
+                () -> scanner.hasNext(),
+                () -> scanner.next());
+
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
+                iter, Spliterator.ORDERED | Spliterator.NONNULL), false);
     }
 
     public static Stream<String> lines(Scanner scanner) {
-        Iterator<String> iter = new Iterator<String>() {
+        Iterator<String> iter = new ScannerIterator<>(
+                () -> scanner.hasNextLine(),
+                () -> scanner.nextLine());
 
-            @Override
-            public boolean hasNext() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public String next() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-            
-        };
         return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
                 iter, Spliterator.ORDERED | Spliterator.NONNULL), false);
     }
 
     public static Stream<Integer> integers(Scanner scanner) {
-        throw new AssertionError("Not Implemented Yet");
+        Iterator<Integer> iter = new ScannerIterator<>(
+                () -> scanner.hasNextInt(),
+                () -> scanner.nextInt());
+
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
+                iter, Spliterator.ORDERED | Spliterator.NONNULL), false);
     }
 
     public static Stream<Double> doubles(Scanner scanner) {
-        throw new AssertionError("Not Implemented Yet");
+        Iterator<Double> iter = new ScannerIterator<>(
+                () -> scanner.hasNextDouble(),
+                () -> scanner.nextDouble());
+
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
+                iter, Spliterator.ORDERED | Spliterator.NONNULL), false);
     }
-    
+
+    @FunctionalInterface
+    private interface HasNext {
+
+        boolean hasNext();
+    }
+
+    @FunctionalInterface
+    private interface Next<T> {
+
+        T next();
+    }
+
+    private static class ScannerIterator<T> implements Iterator<T> {
+
+        private final HasNext hasNextFunc;
+        private final Next<T> nextFunc;
+        private T nextValue;
+
+        ScannerIterator(HasNext hasNextFunc, Next<T> nextFunc) {
+            this.hasNextFunc = hasNextFunc;
+            this.nextFunc = nextFunc;
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (nextValue != null) {
+                return true;
+            }
+
+            if (hasNextFunc.hasNext()) {
+                nextValue = nextFunc.next();
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public T next() {
+            if (nextValue != null || hasNext()) {
+                T value = nextValue;
+                nextValue = null;
+                return value;
+            }
+            throw new NoSuchElementException();
+        }
+
+    }
+
 }
