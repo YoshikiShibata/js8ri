@@ -1,3 +1,4 @@
+#!/usr/bin/jrunscript -f -
 // Copyright (C) 2015 Yoshiki Shibata. All rights reserved.
 
 // run as jjs nextYear.js -- 55
