@@ -18,7 +18,7 @@ public class ReverseContents {
     public static void main(String[] args) throws IOException {
         byte[] bytes = Files.readAllBytes(Paths.get("alice.txt"));
         bytes = reverse(bytes);
-        Files.write(Paths.get("/tmp/alice.txt"), bytes, StandardOpenOption.CREATE_NEW);
+        Files.write(Paths.get("/tmp/alice.txt"), bytes, StandardOpenOption.CREATE);
     }
     
     private static byte[] reverse(byte[] bytes) {
