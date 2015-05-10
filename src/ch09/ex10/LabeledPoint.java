@@ -1,14 +1,15 @@
 /*
  * Copyright (C) 2015 Yoshiki Shibata. All rights reserved.
  */
-package ch09.ex09;
+package ch09.ex10;
 
 import java.util.Objects;
 
 /**
- * 次のLabeledPoint クラスのequals メソッドとhashCode メソッドを実装しな さい。
+ *
+ * 練習問題9 のLabeledPoint クラスにcompareTo メソッドを実装しなさい。
  */
-public class LabeledPoint {
+public class LabeledPoint implements Comparable<LabeledPoint> {
 
     private final String label;
     private final int x;
@@ -40,6 +41,19 @@ public class LabeledPoint {
     @Override
     public int hashCode() {
         return Objects.hash(label, x, y);
+    }
+
+    @Override
+    public int compareTo(LabeledPoint other) {
+        int diff = label.compareTo(other.label);
+        if (diff != 0)
+            return diff;
+        
+        diff = Integer.compare(x, other.x);
+        if (diff != 0)
+            return diff;
+        
+        return Integer.compare(y, other.y);
     }
 
 }
