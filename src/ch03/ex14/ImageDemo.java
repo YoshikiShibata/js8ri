@@ -22,7 +22,7 @@ public class ImageDemo extends Application {
         
         Image blurredImage = LatentImage.from(image).transform(
                 (x, y, reader) -> reader.getColor(width - (x + 1), y))
-                .toImage();
+                .transform(Color::grayscale).toImage();
         Image edgeDetectedImage = LatentImage.from(image).transform(Color::grayscale)
                 .toImage();
         stage.setScene(new Scene(new HBox(
