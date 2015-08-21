@@ -48,14 +48,17 @@ public class ComparatorUtil {
             Objects.requireNonNull(o1, "o1 is null");
             Objects.requireNonNull(o2, "o2 is null");
             
-            String[] fields1 = new String[fieldNames.length];
-            String[] fields2 = fields1.clone();
+            Comparable<?>[] fields1 = new Comparable<?>[fieldNames.length];
+            Comparable<?>[] fields2 = fields1.clone();
 
             getAllFields(fieldNames, fields1, o1);
             getAllFields(fieldNames, fields2, o2);
 
             for (int i = 0; i < fieldNames.length; i++) {
-                int result = fields1[i].compareTo(fields2[i]);
+				@SuppressWarnings("unchecked")
+				Comparable<Object> f1 = (Comparable<Object>)fields1[i];
+				Object f2 = fields2[i];
+				int result = f1.compareTo(f2);
                 if (result != 0) {
                     return result;
                 }
@@ -64,14 +67,14 @@ public class ComparatorUtil {
         };
     }
 
-    private static <T> void getAllFields(String[] fieldNames, String[] fields, T o) {
+    private static <T> void getAllFields(String[] fieldNames, Comparable<?>[] fields, T o) {
         Class<?> cl = o.getClass();
 
         for (int i = 0; i < fieldNames.length; i++) {
             try {
                 Field f = cl.getDeclaredField(fieldNames[i]);
                 f.setAccessible(true);
-                fields[i] = (String) f.get(o);
+                fields[i] = (Comparable<?>) f.get(o);
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
