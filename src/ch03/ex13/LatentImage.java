@@ -57,7 +57,7 @@ public class LatentImage {
         if (x < 0 || width <= x) {
             throw new IllegalArgumentException("x=" + x + " is illegal");
         }
-        if (y < 0 || height <= x) {
+        if (y < 0 || height <= y) {
             throw new IllegalArgumentException("x=" + x + " is illegal");
         }
 

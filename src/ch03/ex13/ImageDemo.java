@@ -16,7 +16,8 @@ public class ImageDemo extends Application {
 
     @Override
     public void start(Stage stage) {
-        Image image = new Image("eiffel-tower.jpg");
+        // Image image = new Image("eiffel-tower.jpg");
+        Image image = new Image("https://upload.wikimedia.org/wikipedia/commons/f/f9/Portrait_of_an_American_Clipper_Ship.jpeg");
 
         Image blurredImage = LatentImage.from(image).transform(blur())
                 .toImage();
@@ -43,7 +44,7 @@ public class ImageDemo extends Application {
                 for (int j = 0; j < 3; j++) {
                     colors[i * 3 + j] = getColor(image,
                             x + i - 1,
-                            y + i - 1,
+                            y + j - 1,
                             width,
                             height);
                 }
