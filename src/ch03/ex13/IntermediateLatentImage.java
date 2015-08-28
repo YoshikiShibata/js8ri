@@ -25,7 +25,7 @@ class IntermediateLatentImage extends LatentImage {
             throw new IllegalArgumentException("x=" + x + " is illegal");
         }
         if (y < 0 || height <= y) {
-            throw new IllegalArgumentException("x=" + x + " is illegal");
+            throw new IllegalArgumentException("y=" + y + " is illegal");
         }
 
         return transformer.apply(x, y, image);

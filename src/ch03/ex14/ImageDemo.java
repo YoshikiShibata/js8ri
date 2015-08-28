@@ -16,19 +16,22 @@ public class ImageDemo extends Application {
 
     @Override
     public void start(Stage stage) {
-        Image image = new Image("eiffel-tower.jpg");
+        // Image image = new Image("eiffel-tower.jpg");
+        Image image = new Image("https://upload.wikimedia.org/wikipedia/commons/f/f9/Portrait_of_an_American_Clipper_Ship.jpeg");
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
         
-        Image blurredImage = LatentImage.from(image).transform(
+        Image mirroredImage = LatentImage.from(image).transform(
                 (x, y, reader) -> reader.getColor(width - (x + 1), y))
-                .transform(Color::grayscale).toImage();
-        Image edgeDetectedImage = LatentImage.from(image).transform(Color::grayscale)
+                .toImage();
+        Image grayscaledImage = LatentImage.from(image).transform(
+                (x, y, reader) -> reader.getColor(width - (x + 1), y))
+				.transform(Color::grayscale)
                 .toImage();
         stage.setScene(new Scene(new HBox(
                 new ImageView(image),
-                new ImageView(blurredImage),
-                new ImageView(edgeDetectedImage))));
+                new ImageView(mirroredImage),
+                new ImageView(grayscaledImage))));
         stage.show();
     }
 

@@ -102,8 +102,8 @@ public class LatentImage implements PixelReader {
         if (x < 0 || width <= x) {
             throw new IllegalArgumentException("x=" + x + " is illegal");
         }
-        if (y < 0 || height <= x) {
-            throw new IllegalArgumentException("x=" + x + " is illegal");
+        if (y < 0 || height <= y) {
+            throw new IllegalArgumentException("y=" + y + " is illegal");
         }
 
         if (caches[x][y] == null) {

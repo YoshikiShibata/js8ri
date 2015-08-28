@@ -58,7 +58,7 @@ public class LatentImage {
             throw new IllegalArgumentException("x=" + x + " is illegal");
         }
         if (y < 0 || height <= y) {
-            throw new IllegalArgumentException("x=" + x + " is illegal");
+            throw new IllegalArgumentException("y=" + y + " is illegal");
         }
 
         return image.getPixelReader().getColor(x, y);
