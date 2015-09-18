@@ -10,5 +10,5 @@ package ch03.ex22;
 は何ですか。
  */
 public class Answer {
-    // There is no faltMap operation.
+    // There is no flatMap operation.
 }
