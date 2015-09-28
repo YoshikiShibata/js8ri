@@ -20,4 +20,9 @@ public class Answer {
     created. In other words, two Pair will be created; only one Pair cannot be returned.
     */
 
+	/* Memo
+	 * Optional<U> flatMap(Optional<T> o, Function<T, Optional<U>> f)
+	 * Future<String> flatMap(Future<URL> f, Function<URL, Future<String>> f)
+	 * Pair<U> flatMap(Pair<T> p, Function<T, Pair<U> f)
+	 */
 }
