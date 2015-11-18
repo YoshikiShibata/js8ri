@@ -58,7 +58,7 @@ public class FindMinimumSeed {
         long minimumSeed = LongStream.
                 iterate(prev(0), p -> prev(prev(p))).
                 map(n -> n ^ M).  // produce seeds
-                limit(1000_1000). // limit to one million
+                limit(1000_000). // limit to one million
                 reduce((x, y) -> Math.abs(x) < Math.abs(y) ? x : y). // find the minimum seed
                 getAsLong();
         
