@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2016 Yoshiki Shibata. All rights reserved.
  */
 
 /**
@@ -11,5 +11,5 @@
  * しょうか。
  */
 public class Answer {
-    // The Comprator is invoked inside the thread calling Arrays.sort.
+    // The Comparator is invoked inside the thread calling Arrays.sort.
 }
