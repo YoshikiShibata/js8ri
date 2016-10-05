@@ -61,7 +61,7 @@ public final class ShowLinks {
     }
 
     private static void showUsage() {
-        System.out.println("ShowLinks <URL>%n  URL: must start with http://");
+        System.out.printf("ShowLinks <URL>%n  URL: must start with http://%n");
     }
 
     private static String blockingReadPage(URL url) {
