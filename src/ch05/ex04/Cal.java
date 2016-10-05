@@ -74,5 +74,6 @@ public class Cal {
         System.out.printf("usage: Cal month year%n"
                 + " month: 1 - 12%n"
                 + " year: -999999999 - +999999999%n");
+        System.exit(1);
     }
 }
