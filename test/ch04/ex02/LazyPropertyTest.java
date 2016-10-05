@@ -16,7 +16,7 @@ public class LazyPropertyTest {
     
     @Test(expected=NullPointerException.class)
     public void testNullPointerException() {
-        new LazyProperty(null);
+        new LazyProperty<Object>(null);
     }
     
     @Test

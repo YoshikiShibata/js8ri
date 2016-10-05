@@ -97,7 +97,11 @@ public final class JavaScanner {
     }
 
     public static void main(String[] args) throws IOException {
-        JavaScanner js = new JavaScanner(Paths.get("/Users/yoshiki/jdk1.8.0_40"), "transient", "volatile");
+		if (args.length == 0) {
+			System.out.println("File Path for the source directory of JDK must be specified");
+			System.exit(1);
+		}
+        JavaScanner js = new JavaScanner(Paths.get(args[0]), "transient", "volatile");
 
         for (String file : js.scanFiles()) {
             System.out.println(file);

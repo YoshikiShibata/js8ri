@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2015 Yoshiki Shibata. All rights reserved.
  */
-package ch08;
+package ch08.ex01;
 
 import ch08.ex01.UnsignedInt;
 import org.junit.Test;
