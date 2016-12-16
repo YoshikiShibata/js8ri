@@ -14,6 +14,6 @@ package ch03.ex19;
  * への最初の型引数でU を? super U と宣言すべきですか。その理由 は、何ですか。
  */
 public class Answer {
-    // U is also used as the return value, so it should no be declared as ? super u,
+    // U is also used as the return value, so it should not be declared as ? super u,
     // mainly becuase it doesn't bring any benefit.
 }
