@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2017 Yoshiki Shibata. All rights reserved.
  */
 package ch01.ex02;
 
@@ -30,4 +30,22 @@ public class ListAllSubdirectoriesTest {
             }
         }
     }
+
+    @Test
+    public void listAllSubDirectoriesWithMethodReference() {
+        // Prepare
+        File dir = Directories.toDirectory("/usr/include");
+        assertNotNull(dir);
+
+        // Action
+        File[] subdirectories = ListAllSubdirectories.listAllSubDirectoriesWithMethodReference(dir);
+
+        // Check
+        for (File sub : subdirectories) {
+            if (!sub.isDirectory()) {
+                fail(sub.getName() + " is not a directory");
+            }
+        }
+    }
+
 }
