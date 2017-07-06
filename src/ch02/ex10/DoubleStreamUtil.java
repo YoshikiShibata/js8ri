@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2017 Yoshiki Shibata. All rights reserved.
  */
 package ch02.ex10;
 
@@ -21,12 +21,21 @@ public class DoubleStreamUtil {
 
     /**
      * Computes the average of Doubles of a stream. If the stream empty, then
-     * 0,0 will be returned.
+	 * 0,0 will be returned. Note that this method cannot be applied to an parallel 
+	 * stream.
+	 *
+	 * Unfortunately count() method cannot be invoked againt the stream because
+	 * invoking it will exhaust the stream. Similary, there is no way to count
+	 * the number of elements against a parallel stream.
      *
      * @param stream stream of Doubles
      * @return average value
+	 * @throws UnsupportedOperationException if stream is parallel.
      */
     public static double average(Stream<Double> stream) {
+		if (stream.isParallel()) {
+			throw new UnsupportedOperationException("Parallel stream is not supported");
+		}
         AtomicLong al = new AtomicLong();
         
         double sum = stream.reduce(0.0, (x, y) -> {
