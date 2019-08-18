@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2019 Yoshiki Shibata. All rights reserved.
  */
 package ch01.ex03;
 
@@ -13,11 +13,12 @@ import org.junit.Test;
  * Linux or Mac OS X.
  */
 public class ListAllFilesWithSuffixTest {
+    private final String userHome = System.getProperty("user.home");
 
     @Test
     public void listAllFilesWithSuffix() {
         // Prepare
-        File dir = Directories.toDirectory("/usr/include");
+        File dir = Directories.toDirectory(userHome);
         assertNotNull(dir);
 
         // Action

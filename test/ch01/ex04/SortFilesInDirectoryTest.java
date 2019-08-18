@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2019 Yoshiki Shibata. All rights reserved.
  */
 package ch01.ex04;
 
@@ -13,11 +13,12 @@ import org.junit.Test;
  * Linux or Mac OS X
  */
 public class SortFilesInDirectoryTest {
+    private final String userHome = System.getProperty("user.home");
 
     @Test
     public void sortFilesByDirectoryThenFilename() {
         // Prepare
-        File[] files = Directories.listFiles("/usr/include");
+        File[] files = Directories.listFiles(userHome);
         assertNotNull(files);
         assertTrue(files.length != 0);
 
