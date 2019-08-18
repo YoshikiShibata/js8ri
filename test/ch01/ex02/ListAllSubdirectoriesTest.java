@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014, 2017 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2017, 2019 Yoshiki Shibata. All rights reserved.
  */
 package ch01.ex02;
 
@@ -13,11 +13,12 @@ import org.junit.Test;
  * as Linux or Mac OS X.
  */
 public class ListAllSubdirectoriesTest {
+    private final String userHome = System.getProperty("user.home");
 
     @Test
     public void listAllSubDirectories() {
         // Prepare
-        File dir = Directories.toDirectory("/usr/include");
+        File dir = Directories.toDirectory(userHome);
         assertNotNull(dir);
 
         // Action
@@ -34,7 +35,7 @@ public class ListAllSubdirectoriesTest {
     @Test
     public void listAllSubDirectoriesWithMethodReference() {
         // Prepare
-        File dir = Directories.toDirectory("/usr/include");
+        File dir = Directories.toDirectory(userHome);
         assertNotNull(dir);
 
         // Action
