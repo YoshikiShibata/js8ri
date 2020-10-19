@@ -1,8 +1,9 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch03.ex13;
 
+import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -34,11 +35,7 @@ public class LatentImage {
     final int height;
 
     public LatentImage(Image image) {
-        if (image == null) {
-            throw new NullPointerException("image is null");
-        }
-
-        this.image = image;
+        this.image = Objects.requireNonNull(image, "image is null");
         this.width = (int) image.getWidth();
         this.height = (int) image.getHeight();
     }

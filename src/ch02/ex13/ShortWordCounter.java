@@ -1,9 +1,10 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch02.ex13;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,9 +31,7 @@ public class ShortWordCounter {
      * @throws IllegalArgumentException if length is not greater than zero.
      */
     public static int[] countShortWords(Stream<String> words, int length) {
-        if (words == null) {
-            throw new NullPointerException("words is null");
-        }
+		Objects.requireNonNull(words, "words is null");
 
         if (length <= 0) {
             throw new IllegalArgumentException("length(" + length + ") must be greater than zero");

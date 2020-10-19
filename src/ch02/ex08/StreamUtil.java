@@ -1,9 +1,10 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch02.ex08;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
@@ -32,9 +33,8 @@ public class StreamUtil {
      * @throws NullPointerException if either first of second is null.
      */
     public static <T> Stream<T> zip(Stream<T> first, Stream<T> second) {
-        if (first == null || second == null)
-            throw new NullPointerException(
-                first == null ? "first is null" : "second is null");
+		Objects.requireNonNull(first, "first is null");
+		Objects.requireNonNull(second, "second is null");
         
         return StreamSupport.stream(new ZipSpliterator<T>(first, second), false);
     }

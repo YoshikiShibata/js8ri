@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch03.ex01;
 
@@ -28,11 +28,7 @@ public final class LoggerUtil {
      * @throws NullPointerException if logger is null
      */
     public LoggerUtil(Logger logger) {
-        if (logger == null) {
-            throw new NullPointerException("logger is null");
-        }
-
-        this.logger = logger;
+		this.logger = Objects.requireNonNull(logger, "logger is null");	
     }
 
     /**

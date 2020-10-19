@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package js8ri.util;
 
@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Contains utility methods for all exercises.
@@ -27,9 +28,7 @@ public class FileUtil {
      * @throws IllegalArgumentException if the filepath cannot be read.
      */
     public static List<String> readAsWords(String filepath) {
-        if (filepath == null) {
-            throw new NullPointerException("filepath is null");
-        }
+		Objects.requireNonNull(filepath, "filepath is null");
 
         String contents = null;
         try {

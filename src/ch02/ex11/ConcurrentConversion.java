@@ -1,10 +1,11 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch02.ex11;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
@@ -37,9 +38,7 @@ public class ConcurrentConversion {
      * negative
      */
     public static <T> List<T> toList(Stream<T> stream, int size) {
-        if (stream == null) {
-            throw new NullPointerException("stream is null");
-        }
+		Objects.requireNonNull(stream, "stream is null");
 
         if (size < 0) {
             throw new IllegalArgumentException("size is negative: " + size);
