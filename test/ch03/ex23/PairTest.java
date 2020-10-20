@@ -13,7 +13,7 @@ public class PairTest {
 
     @Test
     public void testMap() {
-        Pair<String> p = new Pair("10", "20");
+        Pair<String> p = new Pair<>("10", "20");
         Pair<Integer> pi = p.map(Integer::valueOf);
         
         assertTrue(pi.first() == 10);

@@ -28,7 +28,7 @@ public class Pair<T> {
         return second;
     }
     
-    public <U> Pair<U> map(Function<T, ? super U> f) {
-        return new Pair(f.apply(first), f.apply(second));
+    public <U> Pair<U> map(Function<T, ? extends U> f) {
+        return new Pair<>(f.apply(first), f.apply(second));
     }
 }
