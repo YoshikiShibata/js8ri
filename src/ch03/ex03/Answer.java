@@ -13,7 +13,8 @@ package ch03.ex03;
  */
 public class Answer {
     /*
-     * According to the JSR 41: A Simple Assertion Facility, following 
+     * According to the JSR 41: A Simple Assertion Facility 
+	 * (https://www.jcp.org/en/jsr/detail?id=41), following 
      * characteristics were intended to achieve:
      *
      * 1) The facility should be simple and intuitive; it should not change 
