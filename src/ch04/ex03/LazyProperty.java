@@ -44,7 +44,6 @@ public class LazyProperty<T> {
     }
 
     public final Property<T> property() {
-
         if (property != null) {
             return property;
         }
