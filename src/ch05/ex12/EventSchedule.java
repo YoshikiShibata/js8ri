@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch05.ex12;
 
@@ -103,6 +103,7 @@ public final class EventSchedule {
     private List<Event> load() {
         synchronized (lock) {
             try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(eventsFile))) {
+				@SuppressWarnings("unchecked")
                 List<Event> events = (List<Event>) ois.readObject();
                 return events;
             } catch (IOException ex) {
