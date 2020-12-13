@@ -82,7 +82,5 @@ public class CompletableFutureUtil {
         );
         
         ForkJoinPool.commonPool().awaitQuiescence(60, TimeUnit.SECONDS);
-
     }
-
 }
