@@ -28,7 +28,7 @@ public final class ArraySortPerformance {
                     sortInteger(size, seed, Arrays::parallelSort));
             System.out.printf("sort(int)         %d%n",
                     sortInt(size, seed, Arrays::sort));
-            System.out.printf("parallelSort(int) %d%n",
+            System.out.printf("parallelSort(int) %d%n%n",
                     sortInt(size, seed, Arrays::parallelSort));
         }
     }
