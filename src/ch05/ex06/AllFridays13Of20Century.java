@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch05.ex06;
 
@@ -12,7 +12,7 @@ import java.time.Month;
  * 
  * 20 世紀のすべての13 日の金曜日を列挙しなさい。
  */
-public class AllFridays13Of21Century {
+public class AllFridays13Of20Century {
     
     private static final int START_YEAR = 1901;
     private static final int END_YEAR = 2000;
