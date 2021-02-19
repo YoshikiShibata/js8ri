@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2015, 2021 Yoshiki Shibata. All rights reserved.
  */
 package ch08.ex05;
 
@@ -29,12 +29,14 @@ public class WordCountingPerformance {
     }
     
     public static void withStream(List<String> words) {
+		System.out.print(" stream: ");
         measurePerformance(() -> {
             words.stream().filter(w -> w.length() > 12).count();
         });
     }
     
     public static void withFor(List<String> words) {
+		System.out.print("    for: ");
         Predicate<String> p = w -> w.length() > 12;
         measurePerformance(()-> {
             long count = 0;
@@ -46,6 +48,7 @@ public class WordCountingPerformance {
     }
     
     public static void withForEach(List<String> words) {
+		System.out.print("forEach: ");
         measurePerformance(() -> {
                         long[] count = new long[1];
             words.forEach(w -> {
