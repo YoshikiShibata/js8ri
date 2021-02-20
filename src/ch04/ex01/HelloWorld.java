@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Yoshiki Shibata. All rights reserved.
+ * Copyright (C) 2014, 2020 Yoshiki Shibata. All rights reserved.
  */
 package ch04.ex01;
 
@@ -32,7 +32,7 @@ public class HelloWorld extends Application {
         TextArea input = new TextArea(INITIAL_MESSAGE);
         Label message = new Label(INITIAL_MESSAGE);
         message.setFont(new Font(100));
-        message.textProperty().bindBidirectional(input.textProperty());
+        message.textProperty().bind(input.textProperty());
         VBox root = new VBox();
         root.getChildren().addAll(message, input);
 
